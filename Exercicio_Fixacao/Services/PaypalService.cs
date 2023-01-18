@@ -15,11 +15,11 @@ namespace Services
 
         public double PaymentFee(double amount)
         {
-            return amount * 1.02;
+            return amount * 0.02;
         }
         public double InterestFee(double amount, int months)
         {
-            return amount * (months * 0.01 + 1);
+            return amount * months * 0.01;
         }
     }
 }

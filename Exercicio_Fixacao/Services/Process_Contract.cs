@@ -22,9 +22,10 @@ namespace Services
             {
                 installments = (contract.totalValue / months);
                 IOnlinePaymentService Service = new PaypalService();
-                amount=Service.InterestFee(Service.PaymentFee(installments),i);
+                double updateQuota = installments + Service.InterestFee(installments, i);
+                double fullQuota = updateQuota + Service.PaymentFee(updateQuota);
 
-                contract.Installments.Add(new Installment(contract.DateTime.AddMonths(i), amount));
+                contract.Installments.Add(new Installment(contract.DateTime.AddMonths(i), fullQuota));
             }
         }
     }
